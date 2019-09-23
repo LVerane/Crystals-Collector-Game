@@ -1,0 +1,14 @@
+img {
+    width: 100px;
+    margin-right: 10px;
+}
+
+img:last-child{
+    margin-right: 0;
+}
+
+footer {
+    position: fixed;
+    left: 10%; /* adjust this later to align with the page */
+    bottom: 0;
+ }
