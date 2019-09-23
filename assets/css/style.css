@@ -1,5 +1,17 @@
+h1{
+    margin-bottom: 16px;
+}
+h3{
+    margin: 12px 0;
+}
+
+.jumbotron {
+    padding: 32px;
+}
+
 img {
     width: 100px;
+    margin-top: 20px;
     margin-right: 10px;
 }
 
@@ -9,6 +21,10 @@ img:last-child{
 
 footer {
     position: fixed;
-    left: 10%; /* adjust this later to align with the page */
-    bottom: 0;
+    left: 20%;
+    bottom: 10px;
+ }
+
+ .rules {
+    margin-left: 32px;
  }

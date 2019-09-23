@@ -13,39 +13,42 @@
 <body>
 
 <div class="jumbotron">
-    <h1 class="text-center">CrystalsCollector Game</h1>
-    <h3 class="text-center">-- rules text here --</h3>
+    <h1 class="text-center">Crystals Collector Game</h1>
+    <h4 class="rules">You will be given a random number at the start of the game.</h4>
+    <h4 class="rules">There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</h4>
+    <h4 class="rules">You win the game by matching your score to the random number, and you lose the game if your total score goes above the random number.</h4>
+    <h4 class="rules">The value of each crystal is hidden from you. Try them to find it out.</h4>
+    <h4 class="rules">Each time the game starts the values of the crystals change.</h4>
 </div>
 
 <div class="container">
 
     <div class="row">
-        <div class="col">
+        <div class="col-4">
             <h3>Target Score</h3>
             <h4 id="targetScore"></h4>
-        </div>
-        <div class="col">
-            <h4>Wins:</h4>
-            <h4>0</h4>
-            <h4>Losses:</h4>
-            <h4>0</h4>
-        </div>
-    </div>
-    
-    <div class="row">
-        <img id="redGem" class="gem" src="assets/images/RedGem.png" alt="Red Gem">
-        <img id="blueGem" class="gem" src="assets/images/BlueGem.png" alt="Blue Gem">
-        <img id="yellowGem" class="gem" src="assets/images/YellowGem.png" alt="Yellow Gem">
-        <img id="greenGem" class="gem" src="assets/images/GreenGem.png" alt="Green Gem">
-    </div>
-    
-    <div class="row">
-        <div class="col">
-            <h3 class="mt-3">Your Current Score</h3>
+            <h3>Your Current Score</h3>
             <h4 id="currentScore"></h4>
         </div>
-    </div>
+
+        
+        <div class="col-6">
+            <img id="redGem" class="gem" src="assets/images/RedGem.png" alt="Red Gem">
+            <img id="blueGem" class="gem" src="assets/images/BlueGem.png" alt="Blue Gem">
+            <img id="yellowGem" class="gem" src="assets/images/YellowGem.png" alt="Yellow Gem">
+            <img id="greenGem" class="gem" src="assets/images/GreenGem.png" alt="Green Gem">
+        </div>
     
+        
+        <div class="col-2">
+            <h3>Wins:</h3>
+            <h4 id="wins">0</h4>
+            <h3>Losses:</h3>
+            <h4 id="losses">0</h4>
+            <h4 id="message"></h4>
+        </div>
+            
+    </div>
 </div>
 
 <footer class="container">
@@ -54,23 +57,20 @@
 
 <script type="text/javascript">
 
+    var objective;
     var userScore;
     var gemValue;
+    var win = 0;
+    var loss = 0;
 
     function reset(){
-        // number to be guessed is between 18 and 120
-        $("#targetScore").html(Math.floor(Math.random()*103)+18);
-        console.log($("#targetScore").html());
+        $("#targetScore").html(Math.floor(Math.random()*102)+19);
+        objective = parseInt($("#targetScore").html());
         $("#currentScore").html(0);
-        console.log($("#currentScore").html());
         $("#redGem").val(Math.ceil(Math.random()*12));
-        console.log($("#redGem").val());
         $("#blueGem").val(Math.ceil(Math.random()*12));
-        console.log($("#blueGem").val());
         $("#yellowGem").val(Math.ceil(Math.random()*12));
-        console.log($("#yellowGem").val());
         $("#greenGem").val(Math.ceil(Math.random()*12));
-        console.log($("#greenGem").val());
         userScore = 0;
     }
 
@@ -80,10 +80,23 @@
 
         $(".gem").on("click", function(){
             gemValue = parseInt($(this).val());
-            console.log(gemValue);
             userScore = userScore + gemValue;
             $("#currentScore").html(userScore);
-            console.log(userScore);
+
+            if(userScore > objective){
+                loss++;
+                $("#losses").html(loss);
+                $("#message").html("You lost!!");
+                reset();
+            }else if(userScore === objective){
+                win++;
+                $("#wins").html(win);
+                $("#message").html("You won!!");
+                reset();
+            }else{
+                $("#message").html("");
+            }
+
         });
 
     });
