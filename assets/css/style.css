@@ -1,6 +1,7 @@
 h1{
     margin-bottom: 16px;
 }
+
 h3{
     margin: 12px 0;
 }
@@ -23,8 +24,8 @@ footer {
     position: fixed;
     left: 20%;
     bottom: 10px;
- }
+}
 
- .rules {
+.rules {
     margin-left: 32px;
- }
+}

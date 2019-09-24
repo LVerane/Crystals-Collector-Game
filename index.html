@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    
 </head>
 <body>
 
@@ -54,54 +56,6 @@
 <footer class="container">
     <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 </footer>
-
-<script type="text/javascript">
-
-    var objective;
-    var userScore;
-    var gemValue;
-    var win = 0;
-    var loss = 0;
-
-    function reset(){
-        $("#targetScore").html(Math.floor(Math.random()*102)+19);
-        objective = parseInt($("#targetScore").html());
-        $("#currentScore").html(0);
-        $("#redGem").val(Math.ceil(Math.random()*12));
-        $("#blueGem").val(Math.ceil(Math.random()*12));
-        $("#yellowGem").val(Math.ceil(Math.random()*12));
-        $("#greenGem").val(Math.ceil(Math.random()*12));
-        userScore = 0;
-    }
-
-    reset();
-
-    $(document).ready(function() {
-
-        $(".gem").on("click", function(){
-            gemValue = parseInt($(this).val());
-            userScore = userScore + gemValue;
-            $("#currentScore").html(userScore);
-
-            if(userScore > objective){
-                loss++;
-                $("#losses").html(loss);
-                $("#message").html("You lost!!");
-                reset();
-            }else if(userScore === objective){
-                win++;
-                $("#wins").html(win);
-                $("#message").html("You won!!");
-                reset();
-            }else{
-                $("#message").html("");
-            }
-
-        });
-
-    });
-
-</script>
 
 </body>
 </html>
